@@ -42,6 +42,18 @@ def autopad(k, p=None, d=1):  # kernel, padding, dilation
     return p
 
 
+class MobileNet(nn.Module):
+    def __init__(self, *args) -> None:
+        super().__init__()
+        model = models.mobilenet_v3_small(pretrained=True)
+        modules = list(model.children())
+        modules = modules[0][args[1]:args[2]]
+        self.model = nn.Sequential(*modules)
+
+    def forward(self, x):
+        return self.model(x)
+
+
 class Conv(nn.Module):
     # Standard convolution with args(ch_in, ch_out, kernel, stride, padding, groups, dilation, activation)
     default_act = nn.SiLU()  # default activation
