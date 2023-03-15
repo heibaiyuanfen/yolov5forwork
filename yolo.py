@@ -1,7 +1,6 @@
 # YOLOv5 🚀 by Ultralytics, GPL-3.0 license
 """
 YOLO-specific modules
-
 Usage:
     $ python models/yolo.py --cfg yolov5s.yaml
 """
@@ -13,7 +12,6 @@ import platform
 import sys
 from copy import deepcopy
 from pathlib import Path
-
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[1]  # YOLOv5 root directory
 if str(ROOT) not in sys.path:
@@ -23,6 +21,7 @@ if platform.system() != 'Windows':
 
 from models.common import *
 from models.experimental import *
+from models.SimAM import SimAM
 from utils.autoanchor import check_anchor_order
 from utils.general import LOGGER, check_version, check_yaml, make_divisible, print_args
 from utils.plots import feature_visualization
@@ -104,6 +103,7 @@ class Segment(Detect):
         p = self.proto(x[0])
         x = self.detect(self, x)
         return (x, p) if self.training else (x[0], p) if self.export else (x[0], p, x[1])
+
 
 
 class BaseModel(nn.Module):
