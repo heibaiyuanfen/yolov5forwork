@@ -1,5 +1,5 @@
 # YOLOv5 🚀 by Ultralytics, GPL-3.0 license
-
+# Slim-neck by GSConv: A better design paradigm of detector architectures for autonomous vehicle
 # Parameters
 nc: 80  # number of classes
 depth_multiple: 0.33  # model depth multiple
